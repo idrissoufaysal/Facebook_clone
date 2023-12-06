@@ -4,6 +4,7 @@ import 'package:facebook_b13/models/userStory.dart';
 import 'package:flutter/material.dart';
 
 import '../components/user_story.dart';
+import '../models/user_post.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -20,21 +21,18 @@ class _HomeState extends State<Home> {
           "assets/femme1.jpg"), // Remplacez "assets/story2.jpg" par le chemin réel de votre image
       numberStory: 2,
     ),
-
     Story(
       username: "le chancelier",
       storyImage: const AssetImage(
           "assets/man1.jpg"), // Remplacez "assets/story2.jpg" par le chemin réel de votre image
       numberStory: 2,
     ),
-
     Story(
       username: "Nathalie",
       storyImage: const AssetImage(
           "assets/femme.jpg"), // Remplacez "assets/story2.jpg" par le chemin réel de votre image
       numberStory: 2,
     ),
-
     Story(
       username: "Alibaba",
       storyImage: const AssetImage(
@@ -55,6 +53,44 @@ class _HomeState extends State<Home> {
     ),
   ];
 
+  List<UsersPost> usersPosts = [
+    UsersPost(
+      username: "John Doe",
+      date: DateTime.now(),
+      content: "This is the content of the post.",
+      userProfile: "assets/man2.jpg",
+      postImg: "assets/img8.jpg",
+    ),
+    UsersPost(
+      username: "Bob Dylane",
+      date: DateTime.now(),
+      content: "Another post content here.",
+      userProfile: "assets/man1.jpg",
+      postImg: "assets/img1.jpg",
+    ),
+    UsersPost(
+      username: "Man",
+      date: DateTime.now(),
+      content: "Another post content here.",
+      userProfile: "assets/femme1.jpg",
+      postImg: "assets/img5.jpg",
+    ),
+UsersPost(
+      username: "Anita",
+      date: DateTime.now(),
+      content: "Another post content here.",
+      userProfile: "assets/femme.jpg",
+      postImg: "assets/img5.jpg",
+    ),
+    UsersPost(
+      username: "Alex",
+      date: DateTime.now(),
+      content: "Another post content here.",
+      userProfile: "assets/man3.jpg",
+      postImg: "assets/img7.jpg",
+    ),
+    // Ajoutez d'autres objets UsersPost au besoin
+  ];
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -65,10 +101,9 @@ class _HomeState extends State<Home> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-         const  CircleAvatar(
-           backgroundImage: AssetImage('assets/man4.jpg'),
-           ),
-           
+            const CircleAvatar(
+              backgroundImage: AssetImage('assets/man4.jpg'),
+            ),
             Expanded(
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.6,
@@ -102,7 +137,7 @@ class _HomeState extends State<Home> {
 
         //user Stories
         SizedBox(
-          height:MediaQuery.of(context).size.height*0.25,
+          height: MediaQuery.of(context).size.height * 0.25,
           child: ListView.builder(
             itemCount: userStory.length,
             itemBuilder: (context, index) {
@@ -131,12 +166,18 @@ class _HomeState extends State<Home> {
           thickness: 5,
           height: 10,
         ),
-        const SizedBox(
-          height: 0,
-        ),
+       
 
 //User Posts
-  
+        SizedBox(height: 600,
+          child: ListView.builder(
+              itemCount: usersPosts.length,
+              itemBuilder: (context, index) {
+                UsersPost post = usersPosts[index];
+                return UserPost(userPost: post);
+              }),
+        ),
+     const   SizedBox(height: 20,)
       ],
     );
   }

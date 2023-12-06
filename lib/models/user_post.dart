@@ -5,5 +5,5 @@ class UsersPost{
   final String userProfile;
   final String postImg;
 
-  UsersPost(this.username, this.date, this.content, this.userProfile, this.postImg, {required });
+  UsersPost({required this.username,required this.date,required this.content,required this.userProfile,required this.postImg,} );
 }

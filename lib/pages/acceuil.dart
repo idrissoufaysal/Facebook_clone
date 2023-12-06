@@ -43,9 +43,6 @@ class _AcceuilState extends State<Acceuil> {
                   Tab(icon: Icon(Icons.people)),
                   Tab(icon: Icon(Icons.messenger_sharp)),
                   Tab(icon: Icon(Icons.notification_important)),
-                  Tab(
-                    icon: Icon(Icons.live_tv_rounded),
-                  )
                 ],
                 indicatorColor: blue,
                 labelColor:blue,
