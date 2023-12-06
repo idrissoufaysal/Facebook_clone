@@ -1,8 +1,13 @@
+import 'package:facebook_b13/pages/acceuil.dart';
 import 'package:facebook_b13/pages/login_page.dart';
+import 'package:facebook_b13/pages/sign_up.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp(
+   
+  ) 
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,6 +26,11 @@ class MyApp extends StatelessWidget {
         
       ),
       home:const LoginPage(),
+      routes: {
+        '/acceuil':(context)=>Acceuil(),
+        '/login':(context)=>LoginPage(),
+        '/signUp':(context)=>SignUp()
+      },
     );
   }
 }

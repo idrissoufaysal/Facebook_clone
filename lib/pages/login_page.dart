@@ -2,6 +2,8 @@ import 'package:facebook_b13/components/Texfildes.dart';
 import 'package:facebook_b13/pages/acceuil.dart';
 import 'package:flutter/material.dart';
 
+import '../Utils/colors.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -20,13 +22,11 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             const SizedBox(height: 80),
-            const Center(
+            Center(
               child: Text(
-                "Facebook",
+                "FACEBOOK",
                 style: TextStyle(
-                    color: Color.fromARGB(255, 3, 46, 184),
-                    fontSize: 30,
-                    fontStyle: FontStyle.italic),
+                    color: blue, fontSize: 30, fontWeight: FontWeight.w400),
               ),
             ),
             const SizedBox(
@@ -50,18 +50,14 @@ class _LoginPageState extends State<LoginPage> {
                 height: 50,
                 width: 400,
                 decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 1, 85, 194),
+                    color:blue,
                     borderRadius: BorderRadius.circular(10)),
                 margin: const EdgeInsets.all(20),
                 alignment: Alignment.center,
                 child: GestureDetector(
                   onTap: () {
                     print('cliquer');
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Acceuil(),
-                        ));
+                    Navigator.pushNamed(context, '/acceuil');
                   },
                   child: const Text('Se connecter',
                       style: TextStyle(
@@ -76,20 +72,20 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {},
                 child: const Text(
                   'Mode de pass oublier',
-                  style: TextStyle(color: Colors.blue),
+                  style: TextStyle(color:Colors.blue ),
                 ),
               ),
             ),
-            const Divider(
-              color: Colors.grey,
-              height: 5,
-              endIndent: 5,
-            ),
+      const  Divider(
+         color: Colors.grey,
+         height: 5,
+         endIndent: 5,
+                ),
             Container(
                 height: 50,
                 width: 400,
                 decoration: BoxDecoration(
-                    color: Colors.greenAccent[700],
+                    color: green,
                     borderRadius: BorderRadius.circular(5)),
                 margin: const EdgeInsets.all(20),
                 alignment: Alignment.center,
