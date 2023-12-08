@@ -1,3 +1,4 @@
+import 'package:facebook_b13/Utils/date.dart';
 import 'package:facebook_b13/components/likeIcons.dart';
 import 'package:flutter/material.dart';
 
@@ -17,46 +18,64 @@ class UserPost extends StatelessWidget {
     // final w= MediaQuery.of(context).size.height;
 
     return Container(
-      height: h * 0.50,
+      height: h * 0.5,
       width: double.infinity,
-      margin:const EdgeInsetsDirectional.only(start: 5,top:0),
+      margin: const EdgeInsetsDirectional.only(start: 5, top: 0),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(05)),
       child: Column(
         children: [
           //user information
-          Row(
-            children: [
-               CircleAvatar(
-                backgroundImage: AssetImage(userPost.userProfile),
-              ),
-              const SizedBox(width: 5,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(userPost.username,style:const TextStyle(fontWeight: FontWeight.bold),),
-                  Text(
-                    userPost.date.toString(),
-                    style: const TextStyle(
-                        fontSize: 10, fontWeight: FontWeight.w300),
-                  )
-                ],
-              ),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.place)),
-            ],
+          Container(
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage(userPost.userProfile),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          userPost.username,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          DateTimeHelper.getRelativeTime(userPost.date),
+                          style: const TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.w300),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.place)),
+              ],
+            ),
           ),
+
+          const SizedBox(height: 3),
+          //Contenu de la publication
+          Align(
+            alignment: Alignment.topLeft,
+             child: Text(userPost.content,style:const TextStyle(fontSize: 17),)),
 
           //Post image
           Container(
-            margin:const EdgeInsets.all(10) ,
+            margin: const EdgeInsets.all(05),
             height: h * 0.3,
             width: double.infinity,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(5),
                 image: DecorationImage(
-                  image: AssetImage(userPost.postImg),
-                  fit: BoxFit.cover
-                  )),
+                    image: AssetImage(userPost.postImg), fit: BoxFit.cover)),
           ),
 
 //Icon le like, comment, partage

@@ -22,7 +22,7 @@ class UserStory extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
 
     return Container(
-        height: height * 0.4,
+        height: height *  0.25,
         width: width * 0.3,
         decoration: BoxDecoration(
             border: Border.all(color:grey),

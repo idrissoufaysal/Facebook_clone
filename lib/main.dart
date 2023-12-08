@@ -27,9 +27,9 @@ class MyApp extends StatelessWidget {
       ),
       home:const LoginPage(),
       routes: {
-        '/acceuil':(context)=>Acceuil(),
-        '/login':(context)=>LoginPage(),
-        '/signUp':(context)=>SignUp()
+        '/acceuil':(context)=> Acceuil(),
+        '/login':(context)=> LoginPage(),
+        '/signUp':(context)=> SignUp()
       },
     );
   }

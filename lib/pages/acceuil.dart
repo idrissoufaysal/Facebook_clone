@@ -45,18 +45,11 @@ class _AcceuilState extends State<Acceuil> {
                   Tab(icon: Icon(Icons.notification_important)),
                 ],
                 indicatorColor: blue,
-                labelColor:blue,
-               
+                labelColor: blue,
               ),
             ),
             body: const TabBarView(
-              children: [
-                Home(),
-                Peole(),
-                Messager(),
-Live()              ],
-            )
-            )
-            );
+              children: [Home(), Peole(), Messager(), Live()],
+            )));
   }
 }

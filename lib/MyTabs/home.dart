@@ -1,4 +1,5 @@
 import 'package:facebook_b13/Utils/colors.dart';
+import 'package:facebook_b13/Utils/date.dart';
 import 'package:facebook_b13/components/user_post.dart';
 import 'package:facebook_b13/models/userStory.dart';
 import 'package:flutter/material.dart';
@@ -56,40 +57,39 @@ class _HomeState extends State<Home> {
   List<UsersPost> usersPosts = [
     UsersPost(
       username: "John Doe",
-      date: DateTime.now(),
+      date: DateTime(2023, 2, 2),
       content: "This is the content of the post.",
       userProfile: "assets/man2.jpg",
       postImg: "assets/img8.jpg",
     ),
     UsersPost(
       username: "Bob Dylane",
-      date: DateTime.now(),
+      date: DateTime(2022, 8, 2),
       content: "Another post content here.",
       userProfile: "assets/man1.jpg",
       postImg: "assets/img1.jpg",
     ),
     UsersPost(
       username: "Man",
-      date: DateTime.now(),
-      content: "Another post content here.",
+      date: DateTime(2023, 8, 2),
+      content: "je vous aime les gare",
       userProfile: "assets/femme1.jpg",
       postImg: "assets/img5.jpg",
     ),
-UsersPost(
+    UsersPost(
       username: "Anita",
-      date: DateTime.now(),
-      content: "Another post content here.",
+      date: DateTime(2022, 8, 2),
+      content: "je vent la maison si ",
       userProfile: "assets/femme.jpg",
       postImg: "assets/img5.jpg",
     ),
     UsersPost(
       username: "Alex",
-      date: DateTime.now(),
+      date: DateTime(2023, 11, 2),
       content: "Another post content here.",
       userProfile: "assets/man3.jpg",
       postImg: "assets/img7.jpg",
     ),
-    // Ajoutez d'autres objets UsersPost au besoin
   ];
   @override
   Widget build(BuildContext context) {
@@ -137,7 +137,7 @@ UsersPost(
 
         //user Stories
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.25,
+          height: MediaQuery.of(context).size.height * 0.3,
           child: ListView.builder(
             itemCount: userStory.length,
             itemBuilder: (context, index) {
@@ -166,18 +166,24 @@ UsersPost(
           thickness: 5,
           height: 10,
         ),
-       
 
-//User Posts
-        SizedBox(height: 600,
+        //User Posts
+        SizedBox(
+          height: 600,
           child: ListView.builder(
               itemCount: usersPosts.length,
               itemBuilder: (context, index) {
                 UsersPost post = usersPosts[index];
                 return UserPost(userPost: post);
-              }),
+              }
+            ),
         ),
-     const   SizedBox(height: 20,)
+        //  const   SizedBox(height: 20,),
+        //  ListView(
+        //       children: usersPosts.map((UsersPost post) {
+        //         return UserPost(userPost: post);
+        //       }).toList(),
+        //     ),
       ],
     );
   }

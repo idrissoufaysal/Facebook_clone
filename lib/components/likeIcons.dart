@@ -10,7 +10,7 @@ class SmallIcons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return number!=null?( Container( 
       margin:const EdgeInsets.only(left:10,right: 10),
        height: 40,
        width: 90,
@@ -27,6 +27,15 @@ class SmallIcons extends StatelessWidget {
         Text(number.toString())
         ],
       ),
-    );
+    )):
+Container(
+  padding:const  EdgeInsets.all(0),
+  decoration: BoxDecoration(
+    color: grey,
+    borderRadius: BorderRadius.circular(50)
+  ),
+  child:  IconButton(onPressed: (){},
+        icon: icon,),
+);
   }
 }
