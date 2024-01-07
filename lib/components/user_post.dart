@@ -1,6 +1,7 @@
 import 'package:facebook_b13/Utils/date.dart';
 import 'package:facebook_b13/components/likeIcons.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../Utils/colors.dart';
 import '../models/user_post.dart';
@@ -83,16 +84,16 @@ class UserPost extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SmallIcons(
-                icon: const Icon(Icons.account_balance_sharp),
+                icon: const FaIcon(FontAwesomeIcons.thumbsUp),
                 number: 5,
                 radius: BorderRadius.circular(30),
               ),
               SmallIcons(
-                  icon: const Icon(Icons.chat),
+                  icon: const FaIcon(FontAwesomeIcons.comment),
                   number: 9,
                   radius: BorderRadius.circular(30)),
               SmallIcons(
-                  icon: const Icon(Icons.share),
+                  icon: const FaIcon(FontAwesomeIcons.share),
                   number: 0,
                   radius: BorderRadius.circular(30)),
             ],

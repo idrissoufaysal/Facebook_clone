@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../Utils/colors.dart';
 
 class SmallIcons extends StatelessWidget {
-  final Icon icon;
+  final FaIcon icon;
   final int? number;
   final BorderRadius? radius;
   const SmallIcons({super.key, required this.icon, this.number, this.radius});

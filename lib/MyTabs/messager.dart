@@ -3,6 +3,8 @@ import 'package:facebook_b13/components/likeIcons.dart';
 import 'package:facebook_b13/components/onlineUser.dart';
 import 'package:flutter/material.dart';
 import '../models/messagerie.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 class Messager extends StatefulWidget {
   const Messager({
@@ -23,7 +25,8 @@ class _MessagerState extends State<Messager> {
     Messagerie(
         username: 'Jane',
         lastMessage: 'Hi there',
-        userProfile: 'assets/femme2.jpg'),
+        userProfile: 'assets/femme2.jpg',
+        online: false),
     Messagerie(
         username: 'Bob',
         lastMessage: 'Hey',
@@ -65,7 +68,7 @@ class _MessagerState extends State<Messager> {
     Messagerie(
         username: 'John',
         lastMessage: 'Hello',
-        userProfile: 'assets/man4.jpg',
+        userProfile: 'assets/man1.jpg',
         online: true),
     Messagerie(
         username: 'Jane',
@@ -75,12 +78,12 @@ class _MessagerState extends State<Messager> {
         username: 'Bob',
         lastMessage: 'Hey',
         userProfile: 'assets/femme1.jpg',
-        online: false),
+        online: true),
     Messagerie(
         username: 'Bob',
         lastMessage: 'Hey',
         userProfile: 'assets/img2.jpg',
-        online: false),
+        online: true),
     Messagerie(
         username: 'John',
         lastMessage: 'Hello',
@@ -95,11 +98,37 @@ class _MessagerState extends State<Messager> {
         lastMessage: 'Hey',
         userProfile: 'assets/femme1.jpg',
         online: false),
+
+    Messagerie(
+        username: 'Bob',
+        lastMessage: 'Hey',
+        userProfile: 'assets/femme2.jpg',
+        online: false),
+
+    Messagerie(
+        username: 'Bob',
+        lastMessage: 'Hey',
+        userProfile: 'assets/femme.jpg',
+        online: true),
+
+    Messagerie(
+        username: 'Bob',
+        lastMessage: 'Hey',
+        userProfile: 'assets/femme3.jpg',
+        online: true),
     // ... Ajoutez d'autres éléments au besoin
   ];
 
+  List<Messagerie> onLineMessage = [];
+
+  //messages.where((message) => message.online==true).toList();
+
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      onLineMessage =
+          messages.where((message) => message.online == true).toList();
+    });
     return Column(
       children: [
         //L'en tete .....................
@@ -118,14 +147,14 @@ class _MessagerState extends State<Messager> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   SmallIcons(
-                    icon: const Icon(Icons.settings),
+                    icon: const FaIcon(FontAwesomeIcons.gear),
                     radius: BorderRadius.circular(30),
                   ),
                   const SizedBox(
                     width: 5,
                   ),
                   SmallIcons(
-                    icon: const Icon(Icons.search),
+                    icon: const FaIcon(FontAwesomeIcons.magnifyingGlass),
                     radius: BorderRadius.circular(30),
                   ),
                 ],
@@ -133,31 +162,35 @@ class _MessagerState extends State<Messager> {
             ],
           ),
         ),
-    
+
         //Liste des utilisateur en ligne
         SizedBox(
-          height: 80,
+          height: 70,
           child: ListView.builder(
-              itemCount: messages.length,
-              itemBuilder: ((context, index) {
-               // final onlineUsers = messages.where((sms) => sms.online==true);
-                  Messagerie sms=messages[index];
-                 // Messagerie mess=messages[index];
-                return Row(
-                  children: [
-                    onlineUser(sms),
-                 const   SizedBox(width: 4,)
-               
-                  ],
-                );
-              }
-              ),
-             scrollDirection: Axis.horizontal, ),
+            itemCount: onLineMessage.length,
+            itemBuilder: ((context, index) {
+              // final onlineUsers = messages.where((sms) => sms.online==true);
+              Messagerie sms = onLineMessage[index];
+              // Messagerie mess=messages[index];
+              return Row(
+                children: [
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  onlineUser(sms),
+                  const SizedBox(
+                    width: 4,
+                  )
+                ],
+              );
+            }),
+            scrollDirection: Axis.horizontal,
+          ),
         ),
         const SizedBox(
           height: 6,
         ),
-    
+
         //Profile des utilisateurs avec qui vous avez des conversations
         Expanded(
           child: ListView.builder(

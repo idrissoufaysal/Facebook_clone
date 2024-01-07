@@ -3,6 +3,7 @@ import 'package:facebook_b13/Utils/date.dart';
 import 'package:facebook_b13/components/user_post.dart';
 import 'package:facebook_b13/models/userStory.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../components/user_story.dart';
 import '../models/user_post.dart';
@@ -26,19 +27,19 @@ class _HomeState extends State<Home> {
       username: "le chancelier",
       storyImage: const AssetImage(
           "assets/man1.jpg"), // Remplacez "assets/story2.jpg" par le chemin réel de votre image
-      numberStory: 2,
+      numberStory: 5,
     ),
     Story(
       username: "Nathalie",
       storyImage: const AssetImage(
           "assets/femme.jpg"), // Remplacez "assets/story2.jpg" par le chemin réel de votre image
-      numberStory: 2,
+      numberStory: 9,
     ),
     Story(
       username: "Alibaba",
       storyImage: const AssetImage(
           "assets/man4.jpg"), // Remplacez "assets/story2.jpg" par le chemin réel de votre image
-      numberStory: 2,
+      numberStory: 10,
     ),
     Story(
       username: "Frederique",
@@ -57,7 +58,7 @@ class _HomeState extends State<Home> {
   List<UsersPost> usersPosts = [
     UsersPost(
       username: "John Doe",
-      date: DateTime(2023, 2, 2),
+      date: DateTime(2023, 1, 2),
       content: "This is the content of the post.",
       userProfile: "assets/man2.jpg",
       postImg: "assets/img8.jpg",
@@ -74,12 +75,12 @@ class _HomeState extends State<Home> {
       date: DateTime(2023, 8, 2),
       content: "je vous aime les gare",
       userProfile: "assets/femme1.jpg",
-      postImg: "assets/img5.jpg",
+      postImg: "assets/img1.jpg",
     ),
     UsersPost(
       username: "Anita",
       date: DateTime(2022, 8, 2),
-      content: "je vent la maison si ",
+      content: "je vent cette maison ",
       userProfile: "assets/femme.jpg",
       postImg: "assets/img5.jpg",
     ),
@@ -96,68 +97,45 @@ class _HomeState extends State<Home> {
     return ListView(
       children: [
         const SizedBox(
-          height: 16,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const CircleAvatar(
-              backgroundImage: AssetImage('assets/man4.jpg'),
-            ),
-            Expanded(
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.6,
-                margin: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    color: grey, borderRadius: BorderRadius.circular(30)),
-                child: const TextField(
-                  decoration: InputDecoration(
-                      hintText: "     what's in your mind",
-                      border: InputBorder.none,
-                      hintStyle: TextStyle(color: Colors.black)),
-                ),
-              ),
-            ),
-            const Column(
-              children: [Icon(Icons.photo_size_select_large), Text('photo')],
-            )
-          ],
-        ),
-        const SizedBox(
-          height: 3,
-        ),
-        Divider(
-          color: Colors.grey[400],
-          thickness: 5,
           height: 10,
         ),
-        const SizedBox(
-          height: 5,
+        Container(
+          margin:const EdgeInsets.symmetric(horizontal:10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const CircleAvatar(
+                backgroundImage: AssetImage('assets/man4.jpg'),
+              ),
+              Expanded(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  margin: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: grey,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: const TextField(
+                    decoration: InputDecoration(
+                      hintText: "     what's in your mind",
+                      border: InputBorder.none,
+                      hintStyle: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ),
+              ),
+               Column(
+                children: [
+                  FaIcon(FontAwesomeIcons.images,color: green,),
+                 const Text('photo'),
+                ],
+              )
+            ],
+          ),
         ),
 
         //user Stories
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.3,
-          child: ListView.builder(
-            itemCount: userStory.length,
-            itemBuilder: (context, index) {
-              Story story = userStory[index];
-              return Row(
-                children: [
-                  const SizedBox(
-                    width: 3,
-                  ),
-                  UserStory(
-                      numberStory: story.numberStory,
-                      storyImage: story.storyImage,
-                      username: story.username),
-                ],
-              );
-            },
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.all(0),
-          ),
-        ),
+
         const SizedBox(
           height: 7,
         ),
@@ -169,14 +147,50 @@ class _HomeState extends State<Home> {
 
         //User Posts
         SizedBox(
-          height: 600,
+          height: 600 + MediaQuery.of(context).size.height * 0.3,
           child: ListView.builder(
-              itemCount: usersPosts.length,
+              itemCount: usersPosts.length + 1,
               itemBuilder: (context, index) {
-                UsersPost post = usersPosts[index];
+                if (index == 0) {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        child: ListView.builder(
+                          itemCount: userStory.length,
+                          itemBuilder: (context, index) {
+                            Story story = userStory[index];
+                            return Row(
+                              children: [
+                                const SizedBox(
+                                  width: 3,
+                                ),
+                                UserStory(
+                                    numberStory: story.numberStory,
+                                    storyImage: story.storyImage,
+                                    username: story.username),
+                              ],
+                            );
+                          },
+                          scrollDirection: Axis.horizontal,
+                          padding: const EdgeInsets.all(02),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 0,
+                      ),
+                      Divider(
+                        color: Colors.grey[400],
+                        thickness: 5,
+                        height: 10,
+                      ),
+                    ],
+                  );
+                }
+
+                UsersPost post = usersPosts[index - 1];
                 return UserPost(userPost: post);
-              }
-            ),
+              }),
         ),
         //  const   SizedBox(height: 20,),
         //  ListView(

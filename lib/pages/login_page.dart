@@ -1,7 +1,7 @@
 import 'package:facebook_b13/components/Texfildes.dart';
 import 'package:facebook_b13/pages/acceuil.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../Utils/colors.dart';
 
 class LoginPage extends StatefulWidget {
@@ -24,13 +24,13 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 80),
             Center(
               child: Text(
-                "FACEBOOK",
-                style: TextStyle(
-                    color: blue, fontSize: 30, fontWeight: FontWeight.w400),
+                'facebook',
+                style: GoogleFonts.roboto(
+                    fontSize: 35, color: blue, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 30,
             ),
             Textfield(
               textController: _emailController,
@@ -46,56 +46,83 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(
               height: 30,
             ),
-            Container(
-                height: 50,
-                width: 400,
-                decoration: BoxDecoration(
-                    color:blue,
-                    borderRadius: BorderRadius.circular(10)),
-                margin: const EdgeInsets.all(20),
-                alignment: Alignment.center,
-                child: GestureDetector(
-                  onTap: () {
-                    print('cliquer');
-                    Navigator.pushNamed(context, '/acceuil');
-                  },
-                  child: const Text('Se connecter',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      )),
-                )),
-            const SizedBox(height: 0),
+
+            //boutton pour se connecter
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 120),
+                backgroundColor: blue,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(08),
+                  ),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/acceuil');
+              },
+              child: const Text(
+                'Se connecter',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(height: 05),
+
             Align(
               alignment: Alignment.center,
               child: TextButton(
                 onPressed: () {},
                 child: const Text(
                   'Mode de pass oublier',
-                  style: TextStyle(color:Colors.blue ),
+                  style: TextStyle(color: Colors.blue),
                 ),
               ),
             ),
-      const  Divider(
-         color: Colors.grey,
-         height: 5,
-         endIndent: 5,
+            const Divider(
+              color: Colors.grey,
+              height: 5,
+              endIndent: 5,
+            ),
+            const SizedBox(height: 25),
+
+//boutton pour s'inscrire
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 110),
+                backgroundColor: green,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(08),
+                  ),
                 ),
-            Container(
-                height: 50,
-                width: 400,
-                decoration: BoxDecoration(
-                    color: green,
-                    borderRadius: BorderRadius.circular(5)),
-                margin: const EdgeInsets.all(20),
-                alignment: Alignment.center,
-                child: GestureDetector(
-                  child: const Text('Creer un compte',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      )),
-                )),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/signUp');
+              },
+              child: const Text('Creer un compte',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  )),
+            ),
+
+            const SizedBox(
+              height: 40,
+            ),
+
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Agent_b13 Facebook',
+                style: GoogleFonts.roboto(
+                    fontSize: 15, color: blue, fontWeight: FontWeight.w500),
+              ),
+            )
           ],
         ),
       ),
