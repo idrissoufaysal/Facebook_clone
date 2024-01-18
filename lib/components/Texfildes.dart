@@ -4,8 +4,9 @@ class Textfield extends StatelessWidget {
   final TextEditingController textController;
   final String? hintText;
   final Icon? icon;
+  final  String? Function(String?)? validate;
   
-  const Textfield({super.key, required this.textController,this.icon,this.hintText});
+  const Textfield({super.key, required this.textController,this.icon,this.hintText, required this.validate});
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +17,9 @@ class Textfield extends StatelessWidget {
          ),
          alignment: Alignment.bottomCenter,
     
-        child: TextField(
-           controller: textController,
-           
+        child: TextFormField(
+            validator: validate,
+           controller: textController, 
           decoration: InputDecoration(
             border: UnderlineInputBorder(
               borderRadius: BorderRadius.circular(20)),

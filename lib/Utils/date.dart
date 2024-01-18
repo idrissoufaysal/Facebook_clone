@@ -18,10 +18,10 @@ class DateTimeHelper {
       return "Il y a $weeks semaine${weeks > 1 ? 's' : ''}";
     } else if (difference.inDays < 365) {
       final months = (difference.inDays / 30).floor();
-      return "Il y a $months mois${months > 1 ? 's' : ''}";
+      return "Il y a $months mois";
     } else {
       final years = (difference.inDays / 365).floor();
-      return "Il y a $years an${years > 1 ? 's' : ''}";
+      return "Il y a $years ans";
     }
   }
 
