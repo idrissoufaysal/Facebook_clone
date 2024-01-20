@@ -11,12 +11,14 @@ import 'package:http/http.dart' as http;
 class ApiService {
   Future<dynamic> login(Map<String, dynamic> data, String endpoint) async {
     try {
-      final response = await http.post(
+      final http.Response response = await http.post(
         Uri.parse(ApiUrle + endpoint),
         body: jsonEncode(data),
+        headers: {"Content-Type": "application/json"},
       );
       final responseJson = jsonDecode(response.body) as Map<String, dynamic>;
       print(responseJson);
+      print('ddd');
       return responseJson;
     } catch (e) {
       print(e);
@@ -47,51 +49,40 @@ class ApiService {
 }
 
 class AuthService {
-  void signUpUser({
-    required BuildContext context,
-    required String email,
-    required String password,
-    required String nom,
-    required String prenom
-  }) async{
+  void signUpUser(
+      {required BuildContext context,
+      required String email,
+      required String password,
+      required String nom,
+      required String prenom}) async {
+    try {
+      User user = User(
+          token: '',
+          id: '',
+          nom: nom,
+          prenom: prenom,
+          email: email,
+          password: password);
 
-try {
-  User user=User(
-    token: '', 
-    id: '', 
-    nom: nom, 
-    prenom: prenom, 
-    email: email, 
-    password: password
-    );
-
-    http.Response res=await http.post(Uri.parse('${ApiUrle}/signUp'),
-    body: user.toJson(),
-    headers: <String,String>{
-      'Content-type':'application/json; charset=UTF-8',
-    }
-    );
+      http.Response res = await http.post(Uri.parse('${ApiUrle}/signUp'),
+          body: user.toJson(),
+          headers: <String, String>{
+            'Content-type': 'application/json; charset=UTF-8',
+          });
 // ignore: use_build_context_synchronously
-httpErrorHandle(
-  response: res, 
-  context: context,
-  onSuccess:(){
-showSnackBar(
-  context, 
-  'Compte creer avec suscce');
-  });
-    
-} catch (e) {
-    showSnackBar(context, e.toString());
-}
+      httpErrorHandle(
+          response: res,
+          context: context,
+          onSuccess: () {
+            showSnackBar(context, 'Compte creer avec suscce');
+          });
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
   }
 
-  void loginUser({
-    required BuildContext context,
-    required String email,
-    required String password
-
-  }){
-
-  }
+  void loginUser(
+      {required BuildContext context,
+      required String email,
+      required String password}) {}
 }

@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 import 'dart:io';
@@ -30,4 +33,18 @@ String ? validateEmail(String? email){
 
 }
 
+class Alert {
+  void showSnackBar(BuildContext context, String message,Color couleur) {
+  final scaffoldMessenger = ScaffoldMessenger.of(context);
+  scaffoldMessenger.showSnackBar(
+    SnackBar(
+      backgroundColor: couleur,
+      content: Text(message),
+      duration: Duration(seconds: 2),
+       // Durée pendant laquelle la SnackBar est affichée
+    ),
+  );
+}
+  
+}
 

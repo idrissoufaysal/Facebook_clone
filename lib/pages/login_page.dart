@@ -6,6 +6,7 @@ import 'package:facebook_b13/apiServices/api_service.dart';
 import 'package:facebook_b13/components/Texfildes.dart';
 import 'package:facebook_b13/pages/acceuil.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Utils/colors.dart';
 
@@ -19,6 +20,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  ApiService service=ApiService();
 
 void _login()async{
   var body = {
@@ -26,22 +28,15 @@ void _login()async{
         "password":_passwordController.text
       };
   try {
-      var response= ApiService().login(body,'/login');
-      print(response);
+      var r= service.login(body,'/login');
+      print(r);
+      
   } catch (e) {
     print(e);
   }
 }
 
-void _login1(){
 
-  // AuthService.signUpUser(
-  //   context: context
-  //   ,email: _emailController.text,
-  //   password: _passwordController.text, 
-  //   nom: '',
-  //   prenom: '');
-}
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -75,11 +70,13 @@ void _login1(){
                   return null;
                 },
                 textController: _emailController,
-                icon: const Icon(Icons.email),
+                icon: const FaIcon(FontAwesomeIcons.envelope),
                 hintText: 'saisir votre email',
+              keyType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 10),
               Textfield(
+                keyType: TextInputType.visiblePassword,
                  validate: (value) {
                   if (value==null || value.isEmpty) {
                     return 'veuillez entrer votre mot de pass';
@@ -87,7 +84,7 @@ void _login1(){
                   return null;
                 },
                 textController: _passwordController,
-                icon: const Icon(Icons.key),
+                icon: const FaIcon(FontAwesomeIcons.lock),
                 hintText: 'saisir votre mot de pass',
               ),
               const SizedBox(
@@ -109,8 +106,9 @@ void _login1(){
                 onPressed: () {
                   _login();
                    if (_formKey.currentState!.validate()) {
-      
-                  Navigator.pushNamed(context, '/acceuil');
+                  //Navigator.pushNamed(context, '/acceuil');
+
+                
                 }},
                 child: const Text(
                   'Se connecter',
