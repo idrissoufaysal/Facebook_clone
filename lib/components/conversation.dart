@@ -33,7 +33,8 @@ class Conversation extends StatelessWidget {
                       child: CircleAvatar(
                         backgroundColor: green,
                         radius: 5,
-                      ))
+                      ),
+                    )
                   : const Center()
             ],
           ),
@@ -46,15 +47,15 @@ class Conversation extends StatelessWidget {
             children: [
               Text(
                 userMessage.username,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 18),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               Text(
                 userMessage.lastMessage,
                 style: const TextStyle(fontWeight: FontWeight.w300),
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

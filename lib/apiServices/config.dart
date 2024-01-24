@@ -1,2 +1,2 @@
 
-final  ApiUrle="http://192.168.0.106:3000";
+final  ApiUrl="http://192.168.0.110:3000";

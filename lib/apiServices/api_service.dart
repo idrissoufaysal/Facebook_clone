@@ -12,7 +12,7 @@ class ApiService {
   Future<dynamic> login(Map<String, dynamic> data, String endpoint) async {
     try {
       final http.Response response = await http.post(
-        Uri.parse(ApiUrle + endpoint),
+        Uri.parse(ApiUrl + endpoint),
         body: jsonEncode(data),
         headers: {"Content-Type": "application/json"},
       );
@@ -27,7 +27,7 @@ class ApiService {
 
   Future<dynamic> signUp() async {
     try {
-      final response = await http.post(Uri.parse(ApiUrle));
+      final response = await http.post(Uri.parse(ApiUrl));
       final responseJson = jsonDecode(response.body) as Map<String, dynamic>;
 
       return responseJson;
@@ -38,7 +38,7 @@ class ApiService {
 
   Future<dynamic> getAllPost() async {
     try {
-      final response = await http.post(Uri.parse(ApiUrle));
+      final response = await http.post(Uri.parse(ApiUrl));
       final responseJson = jsonDecode(response.body) as Map<String, dynamic>;
 
       return responseJson;
@@ -64,7 +64,7 @@ class AuthService {
           email: email,
           password: password);
 
-      http.Response res = await http.post(Uri.parse('${ApiUrle}/signUp'),
+      http.Response res = await http.post(Uri.parse('${ApiUrl}/signUp'),
           body: user.toJson(),
           headers: <String, String>{
             'Content-type': 'application/json; charset=UTF-8',

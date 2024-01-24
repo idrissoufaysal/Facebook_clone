@@ -142,9 +142,9 @@ class _SignUpState extends State<SignUp> {
                     "password": _passwordController.text
                   };
                   // ignore: avoid_print
-                  print(data);
-                  //service.post('/signUp',data);
-                  service.get('/users');
+                 
+                  service.post('/signUp',data);
+                 // service.get('/users');
                   //Navigator.pushNamed(context, '/acceuil');
                 }
               },

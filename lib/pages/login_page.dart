@@ -3,8 +3,10 @@
 import 'dart:convert';
 
 import 'package:facebook_b13/apiServices/api_service.dart';
+import 'package:facebook_b13/apiServices/network_handler.dart';
 import 'package:facebook_b13/components/Texfildes.dart';
 import 'package:facebook_b13/pages/acceuil.dart';
+import 'package:facebook_b13/pages/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,28 +22,26 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  ApiService service=ApiService();
+  //ApiService service=ApiService();
+  NetworkHandler service = NetworkHandler();
 
-void _login()async{
-  var body = {
-        "email":_emailController.text,
-        "password":_passwordController.text
-      };
-  try {
-      var r= service.login(body,'/login');
+  void _login() async {
+    var body = {
+      "email": _emailController.text,
+      "password": _passwordController.text
+    };
+    try {
+      var r = service.post('/login', body);
       print(r);
-      
-  } catch (e) {
-    print(e);
+    } catch (e) {
+      print(e);
+    }
   }
-}
-
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
@@ -61,10 +61,10 @@ void _login()async{
               ),
               Textfield(
                 validate: (value) {
-                  if (value==null || value.isEmpty) {
+                  if (value == null || value.isEmpty) {
                     return 'veuillez entrer votre adress email';
                   }
-                  if(!value.contains('@')){
+                  if (!value.contains('@')) {
                     return 'Email non valide';
                   }
                   return null;
@@ -72,13 +72,13 @@ void _login()async{
                 textController: _emailController,
                 icon: const FaIcon(FontAwesomeIcons.envelope),
                 hintText: 'saisir votre email',
-              keyType: TextInputType.emailAddress,
+                keyType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 10),
               Textfield(
                 keyType: TextInputType.visiblePassword,
-                 validate: (value) {
-                  if (value==null || value.isEmpty) {
+                validate: (value) {
+                  if (value == null || value.isEmpty) {
                     return 'veuillez entrer votre mot de pass';
                   }
                   return null;
@@ -90,7 +90,7 @@ void _login()async{
               const SizedBox(
                 height: 30,
               ),
-        
+
               //boutton pour se connecter
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -104,12 +104,16 @@ void _login()async{
                   ),
                 ),
                 onPressed: () {
-                  _login();
-                   if (_formKey.currentState!.validate()) {
-                  //Navigator.pushNamed(context, '/acceuil');
-
-                
-                }},
+                  var body = {
+                    "email": _emailController.text,
+                    "password": _passwordController.text
+                  };
+                  if (_formKey.currentState!.validate()) {
+                    //Navigator.pushNamed(context, '/acceuil');
+                  // service.get('/users');
+                  service.post('/login', body);
+                  }
+                },
                 child: const Text(
                   'Se connecter',
                   style: TextStyle(
@@ -119,7 +123,7 @@ void _login()async{
                 ),
               ),
               const SizedBox(height: 05),
-        
+
               Align(
                 alignment: Alignment.center,
                 child: TextButton(
@@ -136,8 +140,8 @@ void _login()async{
                 endIndent: 5,
               ),
               const SizedBox(height: 25),
-        
-        //boutton pour s'inscrire
+
+              //boutton pour s'inscrire
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   padding:
@@ -150,7 +154,6 @@ void _login()async{
                   ),
                 ),
                 onPressed: () {
-
                   Navigator.pushNamed(context, '/signUp');
                 },
                 child: const Text('Creer un compte',
@@ -159,11 +162,11 @@ void _login()async{
                       color: Colors.white,
                     )),
               ),
-        
+
               const SizedBox(
                 height: 40,
               ),
-        
+
               Align(
                 alignment: Alignment.center,
                 child: Text(
